@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import Link from 'react-router-dom'
+import {HashRouter as Router, Route, Link} from 'react-router-dom'
 
 function MenuButtons (props) {
-
-  return (<div className="container">
+  return (
+  <div className="container">
     <div className= "menuButtons">
       <div className="menuButton">
         <Link to='meeting' className>Start Meeting</Link>
@@ -13,8 +13,9 @@ function MenuButtons (props) {
         <Link to='history' className>Meeting History</Link>
       </div>
     </div>
-  )  
+  </div>
+  )
 }
 
 
-export default connect()(MenuButtonss)
+export default connect()(MenuButtons)

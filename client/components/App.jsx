@@ -8,6 +8,7 @@ import Nav from './Nav'
 import History from './History'
 import StartMeeting from './StartMeeting'
 import PastMeeting from './PastMeeting'
+import HomeScreen from './HomeScreen'
 
 const App = ({auth}) => (
   <Router>
@@ -21,12 +22,7 @@ const App = ({auth}) => (
       </div>
 
       <div className=''>
-        {!auth.isAuthenticated &&
-          <Route exact path="/" component={Login} />
-        }
-        {auth.isAuthenticated &&
-          <MenuButtons/>
-        }
+        <HomeScreen/>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/meeting" component={StartMeeting} />
