@@ -4,7 +4,16 @@ import {HashRouter as Router, Route, Link} from 'react-router-dom'
 import {logoutUser} from '../actions/logout'
 
 
-function MenuButtons (props) {
+class MenuButtons extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      auth: this.props.auth
+    }
+  }
+  render() {
+    console.log(this.state.auth)
+    const {logout} = this.props
   return (
   <div className="container">
     <div className= "menuButtons">
@@ -15,13 +24,13 @@ function MenuButtons (props) {
         <Link to='history' className>Meeting History</Link>
       </div>
       <div className="menuButton">
-        <a className="navbar-item" onClick={() => logout()} key="logout">Logout</a>
+        <Link to='login' onClick={() => logout()} key="logout">Logout</Link>
       </div>
     </div>
   </div>
   )
+  }
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return {

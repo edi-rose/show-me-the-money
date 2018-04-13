@@ -24,6 +24,7 @@ class Login extends React.Component {
     this.props.dispatch(loginUser({user_name, password}))
   }
   render() {
+    console.log(this.props.auth)
     const {auth} = this.props
     return (
       <form className="form box" onSubmit={this.submit}>

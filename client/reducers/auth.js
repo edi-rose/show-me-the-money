@@ -31,6 +31,7 @@ export default function auth (state = initialState, action) {
         errorMessage: action.message
       }
     case 'LOGOUT_SUCCESS':
+    console.log('reducer triggered')
       return {
         ...state,
         isFetching: false,

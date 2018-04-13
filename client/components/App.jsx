@@ -10,6 +10,7 @@ import StartMeeting from './StartMeeting'
 import PastMeeting from './PastMeeting'
 import HomeScreen from './HomeScreen'
 
+
 const App = ({auth}) => (
   <Router>
     <div className="container has-text-centered">
@@ -23,7 +24,8 @@ const App = ({auth}) => (
 
       <div className=''>
         <HomeScreen/>
-        <Route path="/login" component={Login} />
+        <Route path="/HomeScreen" component={HomeScreen}/>
+        <Route exact path="/login" component={Login} />
         <Route path="/register" component={Register} />
         <Route path="/meeting" component={StartMeeting} />
         <Route path="/history" component={History} />

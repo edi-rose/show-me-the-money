@@ -9,6 +9,7 @@ function requestLogout () {
 }
 
 function receiveLogout () {
+  console.log('action triggered')
   return {
     type: 'LOGOUT_SUCCESS',
     isFetching: false,
