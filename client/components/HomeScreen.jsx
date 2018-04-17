@@ -14,6 +14,7 @@ class HomeScreen extends React.Component {
     this.setState(this.turnPropsToState(nextProps))
   }
   turnPropsToState(props){
+    console.log('propsToState triggered')
     return {
       auth: this.props.auth
     }

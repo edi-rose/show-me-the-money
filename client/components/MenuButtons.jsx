@@ -8,25 +8,33 @@ class MenuButtons extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      auth: this.props.auth
+      auth: this.props.auth,
+      showButtons: true
     }
+  }
+  hideButtons(){
+    this.setState({
+      showButtons: false
+    })
   }
   render() {
     console.log(this.state.auth)
     const {logout} = this.props
   return (
   <div className="container">
+    { this.state.showButtons &&
     <div className= "menuButtons">
       <div className="menuButton">
-        <Link to='meeting' className>Start Meeting</Link>
+        <Link onClick={() => this.hideButtons()} to='meeting' className>Start Meeting</Link>
       </div>
       <div className="menuButton">
-        <Link to='history' className>Meeting History</Link>
+        <Link onClick={() => this.hideButtons()} to='history' className>Meeting History</Link>
       </div>
       <div className="menuButton">
         <a onClick={() => logout()} key="logout">Logout</a>
       </div>
     </div>
+    }
   </div>
   )
   }
