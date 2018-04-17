@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {HashRouter as Router, Route, Link} from 'react-router-dom'
 import {logoutUser} from '../actions/logout'
-
+import Nav from './Nav'
 
 class MenuButtons extends React.Component {
   constructor(props) {
@@ -22,6 +22,7 @@ class MenuButtons extends React.Component {
     const {logout} = this.props
   return (
   <div className="container">
+    {!this.state.showButtons && <Nav/>}
     { this.state.showButtons &&
     <div className= "menuButtons">
       <div className="menuButton">

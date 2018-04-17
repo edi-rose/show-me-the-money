@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import MenuButtons from './MenuButtons'
-import Login from './Login'
+import Nav from './Nav'
 
 class HomeScreen extends React.Component {
   constructor(props) {
@@ -22,12 +22,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <div>
-        {!this.state.auth.isAuthenticated &&
-          <Login/>
-        }
-        {this.state.auth.isAuthenticated &&
-          <MenuButtons reset={this.reset} />
-        }
+          <Nav/>
       </div>
     )
   }

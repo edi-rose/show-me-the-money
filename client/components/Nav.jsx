@@ -7,9 +7,15 @@ class Nav extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      showBurger: false
+      showBurger: false,
+      showButtons: true
     }
     this.toggleBurger = this.toggleBurger.bind(this)
+  }
+  toggleButtons() {
+    this.setState({
+      showButtons: false
+    })
   }
   toggleBurger() {
     this.setState({showBurger: !this.state.showBurger})
@@ -17,22 +23,16 @@ class Nav extends React.Component {
   render() {
     const {auth, logout} = this.props
     const {showBurger} = this.state
-    return <nav className="navbar">
-      <div className="container">
-        <div className="navbar-brand">
-          <span onClick={this.toggleBurger} className={`navbar-burger burger ${showBurger ? 'is-active': ''}`} data-target="navbarMenuHeroA">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </div>
-        <div id="navbarMenuHeroA" className={`navbar-menu ${showBurger ? "is-active" : ''}`}>
-          <div className="navbar-end">
-            {auth.isAuthenticated
-              ? [
+    console.log(this.state.showButtons)
+    return (
+          <div>
+            { auth.isAuthenticated
+              ?
+              [
                 <Link onClick={this.toggleBurger} className="navbar-item" to="/meeting" key="start">Start Meeting</Link>,
                 <Link onClick={this.toggleBurger} className="navbar-item" to="/history" key="history">Meeting History</Link>,
-                <a className="navbar-item" onClick={() => logout()} key="logout">Logout</a>
+                <a className="navbar-item" onClick={() => logout()}  key="logout">Logout</a>
+
               ]
               : [
                 <Link onClick={this.toggleBurger} className="navbar-item is-large" to='/login' key="login">Login</Link>,
@@ -40,9 +40,7 @@ class Nav extends React.Component {
               ]
             }
           </div>
-        </div>
-      </div>
-    </nav>
+        )
   }
 }
 
