@@ -1,15 +1,22 @@
 
-function addAttendee (attendee) {
-  return {
+export function addAttendee (attendee) {
+   return {
     type:'ADD_ATTENDEE',
     attendee
   }
 }
 
-function removeAttendee (i) {
+export function addTitle (title) {
+  return {
+    type:'ADD_TITLE',
+    title
+  }
+}
+
+export function removeAttendee (i) {
   return {
     type:'REMOVE_ATTENDEE',
-    i
+    index
   }
 }
 

@@ -1,10 +1,27 @@
-function attendees(state = [], action) {
+let initialState = {
+  title: '',
+  attendees: []
+}
+
+function attendees(state = initialState, action) { 
     switch (action.type) {
+        case 'ADD_TITLE':
+            return {
+              title: action.title, 
+              attendees:[...state.attendees]
+            }
         case 'ADD_ATTENDEE':
-            return [...state, action.attendee]
+            return {
+              title: state.title,
+              attendees: [...state, action.attendee]
+            }  
         case 'REMOVE_ATTENDEE':
-            return state.filter((attendee, i) => i !== action.index)
-        case 'GET_ATTENDEES':
+            let newAttendees = state.attendees.filter((attendee, i) => i !== action.index)
+            return {
+              title: state.title,
+              attendees: [...newAttendees]
+            }  
+         case 'GET_ATTENDEES':
             return state
         default:
             return state
