@@ -1,13 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import {addAttendee, addTitle, removeAttendee} from '../actions/attendees'
 
 class CreateMeeting extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {
-      title: '',
-      attendees: []
-    }
+    super(props) 
 
     this.updateTitle = this.updateTitle.bind(this)
     this.addAttendee = this.addAttendee.bind(this)
@@ -15,7 +12,8 @@ class CreateMeeting extends React.Component {
   }
 
   updateTitle(e) {
-    this.setState({ title: e.target.value })
+    let title = e.target.value
+    this.props.dispatch(addTitle({title})) 
   }
 
 
@@ -26,10 +24,7 @@ class CreateMeeting extends React.Component {
     }
     this.refs.formName.value = ''
     this.refs.formWage.value = ''
-    let newAttendees = [...this.state.attendees, person]
-    this.setState({
-      attendees: newAttendees
-    })
+    this.props.dispatch(addAttendee(person)) 
   }
 
   onRemovePerson(i) {
@@ -39,7 +34,7 @@ class CreateMeeting extends React.Component {
   }
 
   displayAttendees() {
-    return this.state.attendees.map((person, i) => {
+    return this.props.attendees.attendees.map((person, i) => {
         return <li key={i}>{person.name}, {person.wage} <button onClick={()=>this.onRemovePerson(i)}>Remove</button></li>
     })
   }
@@ -73,4 +68,12 @@ class CreateMeeting extends React.Component {
   }
 }
 
-export default connect()(CreateMeeting)
+function mapStateToProps (state){
+
+  return {
+    title: state.title,
+    attendees:state.attendees
+  }
+}
+
+export default connect(mapStateToProps)(CreateMeeting)
