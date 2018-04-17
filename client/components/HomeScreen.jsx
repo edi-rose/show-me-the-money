@@ -7,6 +7,14 @@ class HomeScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      auth: this.props.auth,
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    this.setState(this.turnPropsToState(nextProps))
+  }
+  turnPropsToState(props){
+    return {
       auth: this.props.auth
     }
   }
@@ -17,7 +25,7 @@ class HomeScreen extends React.Component {
           <Login/>
         }
         {this.state.auth.isAuthenticated &&
-          <MenuButtons/>
+          <MenuButtons reset={this.reset} />
         }
       </div>
     )

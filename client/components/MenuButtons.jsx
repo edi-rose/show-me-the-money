@@ -24,7 +24,7 @@ class MenuButtons extends React.Component {
         <Link to='history' className>Meeting History</Link>
       </div>
       <div className="menuButton">
-        <Link to='login' onClick={() => logout()} key="logout">Logout</Link>
+        <a onClick={() => logout()} key="logout">Logout</a>
       </div>
     </div>
   </div>
