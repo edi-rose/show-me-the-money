@@ -2,7 +2,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Meeting from './Meeting'
-import { startMeeting, secondTick } from '../actions/currentMeeting'
+import { launchMeeting, secondTick } from '../actions/currentMeeting'
 import { getAttendees } from '../actions/attendees'
 import CreateMeeting from './CreateMeeting'
 import StartButton from './StartButton'
@@ -23,13 +23,13 @@ class StartMeeting extends React.Component {
 
   handleClick() {
     this.props.dispatch(getAttendees())
-    //this.setPerSecWages()
+    this.setPerSecWages()
     this.setState({ showMeeting: true, 
                     perSecWages: this.state.perSecWages,
                     showCreateMeeting: false, 
                     showStartButton: false,
                     showMeeting: true })
-    this.props.dispatch(startMeeting(this.props.attendees, this.props.meetingName, this.state.perSecWages))
+    this.props.dispatch(launchMeeting(this.props.attendees, this.props.title, this.state.perSecWages))
     this.setTimer()
   }
 
@@ -38,7 +38,9 @@ class StartMeeting extends React.Component {
   }
 
   getWages(arr) {
+    
     let wages = arr.map(cell => cell.wage)
+    console.log('wages', wages) 
     return wages
   }
 
@@ -46,12 +48,14 @@ class StartMeeting extends React.Component {
     let wages = this.getWages(this.props.attendees)
     var combinedWages = wages.reduce((a, b) => a + b)
     var perSecondWages = (combinedWages / 60) / 60
+    console.log('perSecondWages', perSecondWages)
     this.setCostPerSec(perSecondWages)
   }
 
   setCostPerSec(num) {
     this.setState({ showMeeting: this.state.showMeeting,
                     perSecWages: num })
+    this.state.perSecWages                
   }
 
   countTime() {
@@ -59,12 +63,12 @@ class StartMeeting extends React.Component {
   }
 
   componentDidMount() {
-    console.log('wahey')
+     
     
   }
 
   render() {
-    console.log(this.state.perSecWages)
+    console.log('per sec wages', this.state.perSecWages)
     return (
       <div className="container">  
         {this.state.showCreateMeeting && <CreateMeeting />}
@@ -77,9 +81,9 @@ class StartMeeting extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    attendees: state.attendees,
-    meetingName: meetingName
+    attendees: state.attendees.attendees,
+    title: state.attendees.title
   }
 }
 
-export default connect()(StartMeeting)
+export default connect(mapStateToProps)(StartMeeting)
