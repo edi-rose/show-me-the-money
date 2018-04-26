@@ -60,7 +60,7 @@ class CreateMeeting extends React.Component {
         <div>
           <h4 className="title is-4">Attendee list</h4>
           <ul>
-            {this.displayAttendees()}
+            {/* {this.displayAttendees()} */}
           </ul>
         </div>
       </div>

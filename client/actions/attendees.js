@@ -1,6 +1,6 @@
 
 export function addAttendee (attendee) {
-   return {
+  return {
     type:'ADD_ATTENDEE',
     attendee
   }

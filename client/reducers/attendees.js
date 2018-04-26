@@ -11,6 +11,7 @@ function attendees(state = initialState, action) {
               attendees:[...state.attendees]
             }
         case 'ADD_ATTENDEE':
+        console.log('add-attendee reducer', action.attendee)
             return {
               title: state.title,
               attendees: [...state, action.attendee]
@@ -22,6 +23,7 @@ function attendees(state = initialState, action) {
               attendees: [...newAttendees]
             }  
          case 'GET_ATTENDEES':
+            console.log('getattendee reducer', state)
             return state
         default:
             return state

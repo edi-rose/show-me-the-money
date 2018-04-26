@@ -11,10 +11,11 @@ function currentMeeting(state=initialState, action) {
   let newState = {...state}
   switch (action.type) {
     case 'START_MEETING':
+      console.log('currentmeeting reducer')
       newState.attendees = action.attendees
       newState.wages = action.wages
       newState.meetingName = action.meetingName
-      newState.meetingRunning = true
+      newState.meetingRunning = true 
       return newState
     case 'END_MEETING':
       return newState  
@@ -28,3 +29,5 @@ function currentMeeting(state=initialState, action) {
       return state
   }
 } 
+
+export default currentMeeting

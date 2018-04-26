@@ -1,5 +1,6 @@
 
 export function launchMeeting (attendees, title, wages) {
+  console.log('action', attendees, title, wages)
   return {
     type: 'START_MEETING',
     attendees,
